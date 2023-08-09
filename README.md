@@ -3,10 +3,12 @@
 This repository contains a gitpod workspace with the following tools that can be used to do static code analysis for kubernetes
 
 - [kube-linter](https://github.com/stackrox/kube-linter)
-- [kubeconform](https://github.com/yannh/kubeconform)
 - [kube-score](https://github.com/zegl/kube-score)
 - [chekov](https://github.com/bridgecrewio/checkov)
 - [snyk](https://github.com/snyk/cli)
+
+Other validation for configuration options
+- [kubeconform](https://github.com/yannh/kubeconform)
 
 Two additional tools to scan kubernetes configuration that will require a real cluster to test.
 
@@ -17,50 +19,46 @@ Two additional tools to scan kubernetes configuration that will require a real c
 ## kube-linter
 
 ```bash
-
-```
-
-## kubeconform
-
-```bash
-
+kube-linter lint pod/pod.yml
+kube-linter lint pod/pod.yml --format json
 ```
 
 ## kube-score
 
 ```bash
-
+kube-score score pod/pod.yml
+kube-score score pod/pod.yml -o json
 ```
 
 ## chekov
 
 ```bash
-
+checkov -d pod/ --framework kubernetes
+checkov -d pod/ --framework kubernetes -o json
 ```
 
 ## Snyk
 
 ```bash
 snyk auth [<API_TOKEN>]
-snyk iac test aws/
+snyk iac test pod/
 ```
-
 # Other tools
+
+## kubeconform
+
+```bash
+kubeconform pod/invalid.yml 
+```
 
 ## kube-bench
 
 ```bash
-
+kubectl apply -f https://raw.githubusercontent.com/aquasecurity/kube-bench/main/job.yaml
 ```
 
 ## kube-hunter
 
 ```bash
-
-```
-
-## trivy
-
-```bash
-
+kubectl apply -f https://raw.githubusercontent.com/aquasecurity/kube-hunter/main/job.yaml
 ```
